@@ -6,7 +6,7 @@
 
 ## Requirements
 
-* phpBB 3.2+
+* phpBB 3.2.1+
 * PHP 7.1+
 * PHP calendar extension (PHP compiled with --enable-calendar)
 * phpBB extension [Archive Forum](https://github.com/marttiphpbb/phpbb-ext-archiveforum)
@@ -42,7 +42,3 @@ You can install this on the latest release of phpBB 3.2 by following the steps b
 ### ACP
 
 ![ACP](doc/acp.png)
-
-### Admin Log (ACP)
-
-![Admin Log](doc/log.png)
