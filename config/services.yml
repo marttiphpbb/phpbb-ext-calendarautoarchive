@@ -6,8 +6,8 @@ services:
         tags:
             - { name: event.listener }
 
-    marttiphpbb.calendarautoarchive.cron.task.calendarautoarchive:
-        class: marttiphpbb\calendarautoarchive\cron\prune
+    marttiphpbb.calendarautoarchive.cron.task.archive:
+        class: marttiphpbb\calendarautoarchive\cron\archive
         arguments:
             - '@config'
             - '@marttiphpbb.calendarautoarchive.manager'

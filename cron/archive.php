@@ -12,7 +12,7 @@ use phpbb\config\config;
 use marttiphpbb\calendarautoarchive\service\manager;
 use marttiphpbb\calendarautoarchive\util\cnst;
 
-class prune extends base
+class archive extends base
 {
 	protected $config;
 	protected $manager;
@@ -39,7 +39,7 @@ class prune extends base
 
 	public function should_run()
 	{
-		// every 6 hours
-		return $this->config[cnst::LAST_RUN] < (time() - 21600);
+		// every 4 hours
+		return $this->config[cnst::LAST_RUN] < (time() - 14400);
 	}
 }

@@ -18,6 +18,6 @@ if (empty($lang) || !is_array($lang))
 
 $lang = array_merge($lang, [
 
-	'ACP_MARTTIPHPBB_CALENDARAUTOARCHIVE'					=> 'Calendar Auto Archive',
-	'ACP_MARTTIPHPBB_CALENDARAUTOARCHIVE_SETTINGS'			=> 'Settings',
+	'ACP_MARTTIPHPBB_CALENDARAUTOARCHIVE'			=> 'Calendar Auto Archive',
+	'ACP_MARTTIPHPBB_CALENDARAUTOARCHIVE_SETTINGS'	=> 'Settings',
 ]);

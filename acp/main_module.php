@@ -21,7 +21,7 @@ class main_module
 		$template = $phpbb_container->get('template');
 		$config = $phpbb_container->get('config');
 		$language = $phpbb_container->get('language');
-
+		$ext_manager = $phpbb_container->get('ext.manager');
 		$language->add_lang('acp', cnst::FOLDER);
 		add_form_key(cnst::FOLDER);
 
@@ -31,6 +31,26 @@ class main_module
 
 				$this->tpl_name = 'settings';
 				$this->page_title = $language->lang(cnst::L_ACP . '_SETTINGS');
+
+				if (!$ext_manager->is_enabled('marttiphpbb/archiveforum'))
+				{
+					$msg = $language->lang(cnst::L_ACP . '_ARCHIVEFORUM_NOT_ENABLED',
+						'<a href="https://github.com/marttiphpbb/phpbb-ext-archiveforum">',
+						'</a>');
+					trigger_error($msg, E_USER_WARNING);
+				}
+
+				if (!($ext_manager->is_enabled('marttiphpbb/calendarmono')
+					|| $ext_manager->is_enabled('marttiphpbb/calendarpoly')))
+				{
+					$msg = $language->lang(cnst::L_ACP . '_CALENDAR_STORAGE_NOT_ENABLED',
+						'<a href="https://github.com/marttiphpbb/phpbb-ext-calendarmono">',
+						'</a>',
+						'<a href="https://github.com/marttiphpbb/phpbb-ext-calendarpoly">',
+						'</a>'
+					);
+					trigger_error($msg, E_USER_WARNING);
+				}
 
 				if ($request->is_set_post('submit'))
 				{

@@ -7,11 +7,14 @@
 ## Requirements
 
 * phpBB 3.2+
-* PHP 7+
+* PHP 7.1+
+* PHP calendar extension (PHP compiled with --enable-calendar)
+* phpBB extension [Archive Forum](https://github.com/marttiphpbb/phpbb-ext-archiveforum)
+* phpBB extension for [Calendar Storage](https://github.com/marttiphpbb/phpbb-ext-calendarmono/blob/master/doc/calendar-set.md), [Calendar Mono](https://github.com/marttiphpbb/phpbb-ext-calendarmono) or [Calendar Poly](https://github.com/marttiphpbb/phpbb-ext-calendarpoly)
 
 ## Features
 
-This phpBB extension moves with a cron task the newly registered inactive users after a configurable number of days.
+This phpBB extension moves with a cron task topics to the Archive Forum (defined with the [Archive Forum Extension](https://github.com/marttiphpbb/phpbb-ext-archiveforum)) after the end of the last Calendar Event (defined in the Calendar Storage, [Calendar Mono](https://github.com/marttiphpbb/phpbb-ext-calendarmono) and/or [Calendar Poly](https://github.com/marttiphpbb/phpbb-ext-calendarpoly)) after a configurable number of days.
 
 ## Quick Install
 

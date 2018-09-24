@@ -23,6 +23,13 @@ $lang = array_merge($lang, [
 	'ACP_MARTTIPHPBB_CALENDARAUTOARCHIVE_DAYS'
 		=> 'Days',
 	'ACP_MARTTIPHPBB_CALENDARAUTOARCHIVE_DAYS_EXPLAIN'
-		=> 'Newly registered users that were never activated will be
-		deleted by a cron task after this amount of days.',
+		=> 'Move topics to the Archive Forum after the last Calendar event
+		after this amount of days.',
+
+	'ACP_MARTTIPHPBB_CALENDARAUTOARCHIVE_ARCHIVEFORUM_NOT_ENABLED'
+		=> 'The %1$sArchive Forum extension%2$s should be installed
+		for this extension to work.',
+	'ACP_MARTTIPHPBB_CALENDARAUTOARCHIVE_CALENDAR_STORAGE_NOT_ENABLED'
+		=> 'The %1$sCalendar Mono%2$s or %3$sCalendar Poly%4$s extension should be installed
+		for this extension to work.',
 ]);
