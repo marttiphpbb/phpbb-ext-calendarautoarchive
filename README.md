@@ -1,7 +1,5 @@
 # PhpBB Extension - marttiphpbb Calendar Auto Archive
 
-## This extension is in initial stage of development. Do not install yet.
-
 [Topic on phpBB.com](#now)
 
 ## Requirements
