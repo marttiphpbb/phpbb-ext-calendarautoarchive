@@ -8,6 +8,7 @@
 
 namespace marttiphpbb\calendarautoarchive\service;
 
+use phpbb\event\dispatcher;
 use phpbb\db\driver\driver_interface as db;
 use phpbb\config\config;
 use phpbb\user;
@@ -22,6 +23,7 @@ class manager
 	protected $log;
 	protected $users_table;
 	protected $phpbb_root_path;
+	protected $dispatcher;
 
 	public function __construct(
 		db $db,
@@ -29,7 +31,8 @@ class manager
 		user $user,
 		log $log,
 		string $users_table,
-		string $phpbb_root_path
+		string $phpbb_root_path,
+		dispatcher $dispatcher
 	)
 	{
 		$this->db = $db;
@@ -38,39 +41,63 @@ class manager
 		$this->log = $log;
 		$this->users_table = $users_table;
 		$this->phpbb_root_path = $phpbb_root_path;
+		$this->dispatcher = $dispatcher;
 	}
 
 	public function run()
 	{
-		$usernames = $user_ids = [];
+		$archive_id = 0;
 
-		$threshold = time() - ($this->config[cnst::DAYS] * 86400);
+		/**
+		 * Event to get the id of the archive forum
+		 *
+		 * @event marttiphpbb.calendarautoarchive.get_archive_id
+		 * @var int 	archive_id		id of the archive forum
+		 */
+		$vars = ['archive_id'];
+		extract($this->dispatcher->trigger_event('marttiphpbb.calendarautoarchive.get_archive_id', compact($vars)));
 
-		$sql = 'select user_id, username
-			from ' . $this->users_table . '
-			where user_type = ' . USER_INACTIVE . '
-				and user_inactive_reason = ' . INACTIVE_REGISTER . '
-				and user_regdate < ' . $threshold;
-		$result = $this->db->sql_query_limit($sql, $limit, $offset);
-
-		while ($row = $this->db->sql_fetchrow($result))
+		if (!$archive_id)
 		{
-			$usernames[] = $row['username'];
-			$user_ids[] = $row['user_id'];
-		}
-		$this->db->sql_freeresult($result);
-
-		if (!count($user_ids))
-		{
+			error_log('no archive id found');
 			return;
 		}
 
-		if (!function_exists('user_delete'))
+		$ref_jd = unixtojd() - $this->config[cnst::DAYS] + 1;
+		$ignore_forum_id = $archive_id;
+		$events = [];
+
+		/**
+		 * Event to get the calendar events before ref_jd
+		 *
+		 * @event marttiphpbb.calendarautoarchive.get_events
+		 * @var array	events
+		 * @var int 	ref_jd
+		 * @var int 	ignore_forum_id
+		 */
+		$vars = ['events', 'ref_jd', 'ignore_forum_id'];
+		extract($this->dispatcher->trigger_event('marttiphpbb.calendarautoarchive.get_events', compact($vars)));
+
+		if (!count($events))
 		{
-			require_once $this->phpbb_root_path . 'includes/functions_user.php';
+			error_log('no calendar events to be archived.');
+			return;
 		}
 
-		user_delete('retain', $user_ids, true);
+		$topic_ids = $topics = [];
+
+		foreach ($events as $event)
+		{
+			$topic_ids[] = $event['topic_id'];
+			$topic_titles[] = $event['topic_title'];
+		}
+
+		if (!function_exists('move_topics'))
+		{
+			require_once $this->phpbb_root_path . 'includes/functions_admin.php';
+		}
+
+		move_topics($topic_ids, $archive_id);
 
 		$this->log->add(
 			'admin',
@@ -78,6 +105,6 @@ class manager
 			$user->ip,
 			'LOG_MARTTIPHPBB_CALENDARAUTOARCHIVE',
 			false,
-			[implode(', ', $usernames)]);
+			[implode(', ', $topic_titles)]);
 	}
 }
