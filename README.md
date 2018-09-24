@@ -1,6 +1,6 @@
 # PhpBB Extension - marttiphpbb Calendar Auto Archive
 
-[Topic on phpBB.com](#now)
+[Topic on phpBB.com](https://www.phpbb.com/community/viewtopic.php?f=456&t=2487566)
 
 ## Requirements
 
