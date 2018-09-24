@@ -4,7 +4,7 @@
 	"description": "Calendar Auto Archive Extension for phpBB 3.2",
 	"homepage": "https://github.com/marttiphpbb/phpbb-ext-calendarautoarchive",
 	"version": "0.1.0",
-	"time": "2018-07-16",
+	"time": "2018-09-24",
 	"license": "GPL-2.0",
 	"authors": [{
 			"name": "martti",
@@ -13,7 +13,7 @@
 			"role": "Developer"
 		}],
 	"require": {
-		"php": ">=7"
+		"php": ">=7.1"
 	},
 	"require-dev": {
 
@@ -21,7 +21,7 @@
 	"extra": {
 		"display-name": "Calendar Auto Archive",
 		"soft-require": {
-			"phpbb/phpbb": ">=3.2"
+			"phpbb/phpbb": ">=3.2.1"
 		},
 		"version-check": {
 			"host": "marttiphpbb.github.io",
