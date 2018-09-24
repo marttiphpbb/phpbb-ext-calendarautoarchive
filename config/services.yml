@@ -1,0 +1,27 @@
+services:
+    marttiphpbb.calendarautoarchive.listener:
+        class: marttiphpbb\calendarautoarchive\event\listener
+        arguments:
+            - '@language'
+        tags:
+            - { name: event.listener }
+
+    marttiphpbb.calendarautoarchive.cron.task.calendarautoarchive:
+        class: marttiphpbb\calendarautoarchive\cron\prune
+        arguments:
+            - '@config'
+            - '@marttiphpbb.calendarautoarchive.manager'
+        calls:
+            - [set_name, [cron.task.marttiphpbb_calendarautoarchive]]
+        tags:
+            - { name: cron.task }
+
+    marttiphpbb.calendarautoarchive.manager:
+        class: marttiphpbb\calendarautoarchive\service\manager
+        arguments:
+            - '@dbal.conn'
+            - '@config'
+            - '@user'
+            - '@log'
+            - '%tables.users%'
+            - '%core.root_path%'

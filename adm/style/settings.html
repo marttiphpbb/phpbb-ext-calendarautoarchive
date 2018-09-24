@@ -1,0 +1,26 @@
+{%- extends '@marttiphpbb_calendarautoarchive/base.html' -%}
+
+{%- block title -%}
+	{{- lang('ACP_MARTTIPHPBB_CALENDARAUTOARCHIVE_SETTINGS') -}}
+{%- endblock title -%}
+
+{%- block form_content -%}
+	<fieldset>
+		<dl>
+			<dt>
+				<label for="days">
+					{{- lang('ACP_MARTTIPHPBB_CALENDARAUTOARCHIVE_DAYS') -}}
+				</label>
+				<br>
+				<span>
+					{{- lang('ACP_MARTTIPHPBB_CALENDARAUTOARCHIVE_DAYS_EXPLAIN') -}}
+				</span>
+			</dt>
+			<dd>
+				<input type="number" name="days" id="days" value="{{- DAYS -}}" min="1">
+			</dd>
+		</dl>
+	</fieldset>
+
+	{%- include '@marttiphpbb_calendarautoarchive/include/submit_buttons.html' -%}
+{%- endblock form_content -%}
