@@ -40,3 +40,7 @@ You can install this on the latest release of phpBB 3.2 by following the steps b
 ### ACP
 
 ![ACP](doc/acp.png)
+
+### ACP Admin Log
+
+![ACP Admin Log](doc/log.png)
