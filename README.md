@@ -6,9 +6,15 @@
 
 * phpBB 3.2.1+
 * PHP 7.1+
-* PHP calendar extension (PHP compiled with --enable-calendar)
 * phpBB extension [Archive Forum](https://github.com/marttiphpbb/phpbb-ext-archiveforum)
 * phpBB extension for [Calendar Storage](https://github.com/marttiphpbb/phpbb-ext-calendarmono/blob/master/doc/calendar-set.md), [Calendar Mono](https://github.com/marttiphpbb/phpbb-ext-calendarmono) or [Calendar Poly](https://github.com/marttiphpbb/phpbb-ext-calendarpoly)
+* PHP calendar extension (compiled with --enable-calendar)
+
+When you don't have PHP compiled with --enable-calendar be sure to
+download the build with the vendor directory included (See the latest [Release](https://github.com/marttiphpbb/phpbb-ext-calendarmonoinput/releases)) or run
+`composer update` in the root of this extension. This way the
+missing calendar functions are provided by the
+[fisharebest/ext-calendar](https://github.com/fisharebest/ext-calendar) package.
 
 ## Features
 

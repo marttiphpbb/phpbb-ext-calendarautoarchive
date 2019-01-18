@@ -13,7 +13,8 @@
 			"role": "Developer"
 		}],
 	"require": {
-		"php": ">=7.1"
+		"php": ">=7.1",
+		"fisharebest/ext-calendar": "^2.5"
 	},
 	"require-dev": {
 
