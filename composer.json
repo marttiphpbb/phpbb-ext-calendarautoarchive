@@ -7,14 +7,13 @@
 	"time": "2019-01-18",
 	"license": "GPL-2.0",
 	"authors": [{
-			"name": "martti",
-			"email": "info@martti.be",
-			"homepage": "https://github.com/marttiphpbb/",
-			"role": "Developer"
-		}],
+		"name": "martti",
+		"email": "info@martti.be",
+		"homepage": "https://github.com/marttiphpbb/",
+		"role": "Developer"
+	}],
 	"require": {
-		"php": ">=7.1",
-		"fisharebest/ext-calendar": "^2.5"
+		"php": ">=7.1"
 	},
 	"require-dev": {
 
