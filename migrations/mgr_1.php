@@ -1,7 +1,7 @@
 <?php
 /**
 * phpBB Extension - marttiphpbb Calendar Auto Archive
-* @copyright (c) 2018 marttiphpbb <info@martti.be>
+* @copyright (c) 2018 - 2019 marttiphpbb <info@martti.be>
 * @license GNU General Public License, version 2 (GPL-2.0)
 */
 
